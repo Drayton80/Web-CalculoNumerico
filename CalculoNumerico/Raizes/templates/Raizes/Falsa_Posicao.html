@@ -1,0 +1,72 @@
+<div class="container mt-5">
+      
+      <!--| Nome do Método |----------------------------------->
+      <div class="row">
+        <div class="col-12 text-center mt-4 mb-2 text-primary">
+          <h2>Método da Falsa Posição</h2>
+        </div>
+      </div>
+      <!--|-----------------|----------------------------------->
+
+
+      <!--| Inputs de Atributos |------------------------------->
+      <div class="row justify-content-center">
+
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <form>
+
+            <!--| Equação de f(x) |-->
+            <div class="form-row mb-3">
+              <label class="text-primary" for="falsaPosicaoEquacao">Equação de f(x)</label>
+              <input type="text" class="form-control" id="falsaPosicaoEquacaoInput" placeholder="Ex.: x^2+2*x" name = "falsaPosicaoEquacaoInput">
+            </div>
+
+            <!--| Definição do Intervalo |-->
+            <div class="form-row">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
+                <label class="text-primary" for="falsaPosicaoLI">Limite Inferior</label>
+                <input type="text" class="form-control" id="falsaPosicaoLIInput" placeholder="Ex.: 1" name = "falsaPosicaoLIInput">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
+                <label class="text-primary" for="falsaPosicaoLS">Limite Superior</label>
+                <input type="text" class="form-control" id="falsaPosicaoLSInput" placeholder="Ex.: 3" name = "falsaPosicaoLSInput">
+              </div>
+            </div>
+
+            <!--| Critério de Parada |-->
+            <div class="form-row mb-3 d-flex">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                <label class="text-primary" for="falsaPosicaoTolerancia">Tolerância</label>
+                <input type="text" class="form-control" id="falsaPosicaoToleranciaInput" placeholder="Ex.: 10^-3" name = "falsaPosicaoToleranciaInput">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 align-self-end">
+                <div class="dropdown">
+                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" id="falsaPosicaoErro">
+                    Critério de Parada
+                  </button>
+
+                  <div class="dropdown-menu w-100">
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="falsaPosicaoErroAbsoluto">Erro Absoluto</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="falsaPosicaoErroRelativo">Erro Relativo</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <!--| Resultado da Raiz |-->
+            <div class="form-row">
+              <label class="text-primary h6" for="falsaPosicaoRaiz">Raiz Aproximada x* = </label>
+              <!-- TO DO Exibir Resultado -->
+            </div>
+
+            <!--| Exibição do Gráfico |-->
+            <div class="form-row">
+              <label class="text-primary h5" for="falsaPosicaoGrafico">Gráfico das Iterações </label>
+              <!-- TO DO Exibidor de Gráfico -->
+            </div>
+
+        </form>
+      </div>
