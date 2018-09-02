@@ -16,9 +16,10 @@
 
     <title>Projeto de Cálculo Numérico</title>
   </head>
-  <body>
-    <!-- WIDGETS e LAYOUT -->
 
+  <body>
+
+    <!-- WIDGETS e LAYOUT -->  
     <!--   
        navbar-expand-lg: define o tamanho minimo para o navbar não aparecer, como
        em certos dispositivos mobile, aonde não se tem espaço suficiente para o navbar.
@@ -26,24 +27,26 @@
        bg-light: define a cor do background do navbar como cinza claro.
       -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-
       <div class="container">
 
         <a class="navbar-brand h1 mb-0" href="TODO Link para Alguma pag">Grupo Iliantia</a>
 
-        <!-- 
-           Botão Lateral de Expansão: apenas aparece quando a tela chega a um determinado
-           tamanho de limitação.
+        <!-- Botão Lateral de Expansão: 
+               Descrição: apenas aparece quando a tela chega a um determinado
+               tamanho que limita a exibição do navbar completamente. Ele serve justamente
+               para esconder ou exibir os itens do navbar em formato de lista vertical.
           -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- 
-           Itens do Navbar: podem sumir dependendo do tamanho de tela, mas o uso do Botão Lateral
-           permite que eles reapareçam num formato de lista vertical.
+        <!-- Itens do Navbar:  
+               Descrição: podem sumir dependendo do tamanho de tela, mas o uso do Botão Lateral
+               permite que eles reapareçam num formato de lista vertical.
           -->
         <div class="collapse navbar-collapse" id="navbarSite">
+
+
           <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
@@ -58,70 +61,276 @@
               <a class="nav-link" href="TODO LINK">Parte III</a>
             </li>
 
-            <!-- li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="navDrop" href="TODO LINK">
-                Cálculo Numérico
-              </a>
-
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="TODO LINK">Parte I</a>
-                <a class="dropdown-item" href="TODO LINK">Parte II</a>
-                <a class="dropdown-item" href="TODO LINK">Parte III</a>
-              </div>
-            </li-->
           </ul>
 
+
           <ul class="navbar-nav ml-auto">
+
             <li class="nav-item">
               <a class="nav-link" href="TODO LINK">GitHub</a>
             </li>
+
           </ul>
 
         </div>
-      </div>      
 
+      </div>      
     </nav>
 
+    <!--||--=====================--||--===================================================-->
+    <!--|| Método da Falsa Posição ||--------------------------------------------------------->
     <div class="container mt-5">
       
+      <!--| Nome do Método |----------------------------------->
       <div class="row">
         <div class="col-12 text-center mt-4 mb-2 text-primary">
           <h2>Método da Falsa Posição</h2>
         </div>
       </div>
+      <!--|-----------------|----------------------------------->
 
-      <div class="row justify-content-center mb-4">
+
+      <!--| Inputs de Atributos |------------------------------->
+      <div class="row justify-content-center">
+
         <div class="col-sm-6 col-md-8 col-lg-10">
           <form>
 
-            <div class="form-row">
-              <label class="text-primary" for="falsaPosicaoEquacao">Equação</label>
+            <!--| Equação de f(x) |-->
+            <div class="form-row mb-3">
+              <label class="text-primary" for="falsaPosicaoEquacao">Equação de f(x)</label>
               <input type="text" class="form-control" id="falsaPosicaoEquacaoInput" placeholder="Ex.: x^2+2*x">
             </div>
 
-            <div class="form-row my-3">
-              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+            <!--| Definição do Intervalo |-->
+            <div class="form-row">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
                 <label class="text-primary" for="falsaPosicaoLI">Limite Inferior</label>
                 <input type="text" class="form-control" id="falsaPosicaoLIInput" placeholder="Ex.: 1">
               </div>
 
-              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
                 <label class="text-primary" for="falsaPosicaoLS">Limite Superior</label>
                 <input type="text" class="form-control" id="falsaPosicaoLSInput" placeholder="Ex.: 3">
               </div>
             </div>
+
+            <!--| Critério de Parada |-->
+            <div class="form-row mb-3 d-flex">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                <label class="text-primary" for="falsaPosicaoTolerancia">Tolerância</label>
+                <input type="text" class="form-control" id="falsaPosicaoToleranciaInput" placeholder="Ex.: 10^-3">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 align-self-end">
+                <div class="dropdown">
+                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" id="falsaPosicaoErro">
+                    Critério de Parada
+                  </button>
+
+                  <div class="dropdown-menu w-100">
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="falsaPosicaoErroAbsoluto">Erro Absoluto</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="falsaPosicaoErroRelativo">Erro Relativo</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             
+            <!--| Resultado da Raiz |-->
+            <div class="form-row">
+              <label class="text-primary h6" for="falsaPosicaoRaiz">Raiz Aproximada x* = </label>
+              <!-- TO DO Exibir Resultado -->
+            </div>
+
+            <!--| Exibição do Gráfico |-->
+            <div class="form-row">
+              <label class="text-primary h5" for="falsaPosicaoGrafico">Gráfico das Iterações </label>
+              <!-- TO DO Exibidor de Gráfico -->
+            </div>
+
           </form>
         </div>
+        <!--|---------------------|------------------------------->
+
       </div>
-      
     </div>
+    <!--||-------------------------||--------------------------------------------------------->
+    <!--||--=====================--||--===================================================-->
+
+
+    <!--||--=================--||--=======================================================-->
+    <!--|| Método das Secantes ||------------------------------------------------------------->
+    <div class="container">
+      
+      <!--| Nome do Método |----------------------------------->
+      <div class="row">
+        <div class="col-12 text-center mt-4 mb-2 text-primary">
+          <h2>Método da Secante</h2>
+        </div>
+      </div>
+      <!--|-----------------|----------------------------------->
+
+
+      <!--| Inputs de Atributos |------------------------------->
+      <div class="row justify-content-center">
+
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <form>
+
+            <!--| Equação de f(x) |-->
+            <div class="form-row mb-3">
+              <label class="text-primary" for="secanteEquacao">Equação de f(x)</label>
+              <input type="text" class="form-control" id="secanteEquacaoInput" placeholder="Ex.: x^2+2*x">
+            </div>
+
+            <!--| Estimativas Iniciais |-->
+            <div class="form-row">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
+                <label class="text-primary" for="secanteX0">Estimativa x0</label>
+                <input type="text" class="form-control" id="secanteX0Input" placeholder="Ex.: 1.8">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
+                <label class="text-primary" for="secanteX1">Estimativa x1</label>
+                <input type="text" class="form-control" id="secanteX1Input" placeholder="Ex.: 2.2">
+              </div>
+            </div>
+
+            <!--| Critério de Parada |-->
+            <div class="form-row mb-3 d-flex">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                <label class="text-primary" for="secanteTolerancia">Tolerância</label>
+                <input type="text" class="form-control" id="secanteToleranciaInput" placeholder="Ex.: 10^-3">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 align-self-end">
+                <div class="dropdown">
+                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" id="secanteErro">
+                    Critério de Parada
+                  </button>
+
+                  <div class="dropdown-menu w-100">
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="secanteErroAbsoluto">Erro Absoluto</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="secanteErroRelativo">Erro Relativo</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <!--| Resultado da Raiz |-->
+            <div class="form-row">
+              <label class="text-primary h6" for="secanteRaiz">Raiz Aproximada x* = </label>
+              <!-- TO DO Exibir Resultado -->
+            </div>
+
+            <!--| Exibição do Gráfico |-->
+            <div class="form-row">
+              <label class="text-primary h5" for="secanteGrafico">Gráfico das Iterações </label>
+              <!-- TO DO Exibidor de Gráfico -->
+            </div>
+
+          </form>
+        </div>
+        <!--|---------------------|------------------------------->
+
+      </div>
+    </div>
+    <!--||---------------------||------------------------------------------------------------->
+    <!--||--=================--||--=======================================================-->
+
+    <!--||--==============--||--===========================================================-->
+    <!--|| Método de Müller ||------------------------------------------------------------->
+    <div class="container">
+      
+      <!--| Nome do Método |----------------------------------->
+      <div class="row">
+        <div class="col-12 text-center mt-4 mb-2 text-primary">
+          <h2>Método de Müller</h2>
+        </div>
+      </div>
+      <!--|-----------------|----------------------------------->
+
+
+      <!--| Inputs de Atributos |------------------------------->
+      <div class="row justify-content-center">
+
+        <div class="col-sm-6 col-md-8 col-lg-10">
+          <form>
+
+            <!--| Equação de f(x) |-->
+            <div class="form-row mb-3">
+              <label class="text-primary" for="mullerEquacao">Equação de f(x)</label>
+              <input type="text" class="form-control" id="mullerEquacaoInput" placeholder="Ex.: x^2+2*x">
+            </div>
+
+            <!--| Estimativas Iniciais |-->
+            <div class="form-row">
+              <div class="form-group col-sm-4 col-md-4 col-lg-4 mb-3">
+                <label class="text-primary" for="mullerX0">Estimativa x0</label>
+                <input type="text" class="form-control" id="mullerX0Input" placeholder="Ex.: 1.2">
+              </div>
+
+              <div class="form-group col-sm-4 col-md-4 col-lg-4 mb-3">
+                <label class="text-primary" for="mullerX1">Estimativa x1</label>
+                <input type="text" class="form-control" id="mullerX1Input" placeholder="Ex.: 1.4">
+              </div>
+
+              <div class="form-group col-sm-4 col-md-4 col-lg-4 mb-3">
+                <label class="text-primary" for="mullerX2">Estimativa x2</label>
+                <input type="text" class="form-control" id="mullerX2Input" placeholder="Ex.: 1.8">
+              </div>
+            </div>
+
+            <!--| Critério de Parada |-->
+            <div class="form-row mb-3 d-flex">
+              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                <label class="text-primary" for="mullerTolerancia">Tolerância</label>
+                <input type="text" class="form-control" id="mullerToleranciaInput" placeholder="Ex.: 10^-3">
+              </div>
+
+              <div class="form-group col-sm-6 col-md-6 col-lg-6 align-self-end">
+                <div class="dropdown">
+                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" id="mullerErro">
+                    Critério de Parada
+                  </button>
+
+                  <div class="dropdown-menu w-100">
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="mullerErroAbsoluto">Erro Absoluto</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="mullerErroRelativo">Erro Relativo</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <!--| Resultado da Raiz |-->
+            <div class="form-row">
+              <label class="text-primary h6" for="mullerRaiz">Raiz Aproximada x* = </label>
+              <!-- TO DO Exibir Resultado -->
+            </div>
+
+            <!--| Exibição do Gráfico |-->
+            <div class="form-row">
+              <label class="text-primary h5" for="mullerGrafico">Gráfico das Iterações </label>
+              <!-- TO DO Exibidor de Gráfico -->
+            </div>
+
+          </form>
+        </div>
+        <!--|---------------------|------------------------------->
+
+      </div>
+    </div>
+    <!--||------------------||--------------------------------------------------------------->
+    <!--||--==============--||--=========================================================-->
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="node_modules\jquery\dist\jquery.js"></script>
-    <script src="node_modules\bootstrap\dist\js\bootstrap.js"></script>
     <script src="node_modules\popper.js\dist\umd\popper.js"></script>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.js"></script>
   </body>
-  
 </html>
