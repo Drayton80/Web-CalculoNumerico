@@ -35,30 +35,41 @@
             </div>
 
             <!--| Critério de Parada |-->
-            <div class="form-row mb-3 d-flex">
+            <div class="form-row mb-2 d-flex">
+              <!-- Formulário -->
               <div class="form-group col-sm-6 col-md-6 col-lg-6">
+                <!-- label -->
                 <label class="text-primary" for="falsaPosicaoTolerancia">Tolerância</label>
+                <!-- input -->
                 <input type="text" class="form-control" id="falsaPosicaoToleranciaInput" placeholder="Ex.: 10^-3" name = "falsaPosicaoToleranciaInput">
               </div>
 
-              <div class="form-group col-sm-3 col-md-3 col-lg-3 align-self-end">
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios1" value="erroAbsoluto" checked>
-                  <label class="form-check-label text-primary" for="exampleRadios1">
-                    Erro Absoluto
-                  </label>
+              <!-- Formulário -->
+              <div class="form-group col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 ml-1">
+                <!-- label -->
+                <div class="form-row">
+                  <label class="text-primary mb-1" for="falsaPosicaoErro">Critério de Parada</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios2" value="erroRelativo">
-                  <label class="form-check-label text-primary" for="exampleRadios2">
-                    Erro Relativo
-                  </label>
+                <!-- radios -->
+                <div class="form-row align-self-center">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios1" value="erroAbsoluto" checked>
+                    <label class="form-check-label text-primary" for="exampleRadios1">
+                      Erro Absoluto
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios2" value="erroRelativo">
+                    <label class="form-check-label text-primary" for="exampleRadios2">
+                      Erro Relativo
+                    </label>
+                  </div>
                 </div>
               </div>
-
             </div>
 
-            <div class="form-row mb-3">
+            <!--| Botão de Salvar |-->
+            <div class="form-row mb-4">
               <button class="btn btn-block btn-primary" type="submit" name="falsaPosicaoSalvar">
                 Calcular Raiz Aproximada
               </button>
