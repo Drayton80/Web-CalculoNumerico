@@ -13,24 +13,24 @@
       <div class="row justify-content-center">
 
         <div class="col-sm-6 col-md-8 col-lg-10">
-          <form>
+          <form method="POST"> {% csrf_token %} 
 
             <!--| Equação de f(x) |-->
             <div class="form-row mb-3">
               <label class="text-primary" for="secanteEquacao">Equação de f(x)</label>
-              <input type="text" class="form-control" id="secanteEquacaoInput" placeholder="Ex.: x^2+2*x">
+              <input type="text" class="form-control" name="secanteEquacaoInput" placeholder="Ex.: x^2+2*x">
             </div>
 
             <!--| Estimativas Iniciais |-->
             <div class="form-row">
               <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
                 <label class="text-primary" for="secanteX0">Estimativa x0</label>
-                <input type="text" class="form-control" id="secanteX0Input" placeholder="Ex.: 1.8">
+                <input type="text" class="form-control" name="secanteX0Input" placeholder="Ex.: 1.8">
               </div>
 
               <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
                 <label class="text-primary" for="secanteX1">Estimativa x1</label>
-                <input type="text" class="form-control" id="secanteX1Input" placeholder="Ex.: 2.2">
+                <input type="text" class="form-control" name="secanteX1Input" placeholder="Ex.: 2.2">
               </div>
             </div>
 
@@ -38,18 +38,18 @@
             <div class="form-row mb-3 d-flex">
               <div class="form-group col-sm-6 col-md-6 col-lg-6">
                 <label class="text-primary" for="secanteTolerancia">Tolerância</label>
-                <input type="text" class="form-control" id="secanteToleranciaInput" placeholder="Ex.: 10^-3">
+                <input type="text" class="form-control" name="secanteToleranciaInput" placeholder="Ex.: 10^-3">
               </div>
 
               <div class="form-group col-sm-6 col-md-6 col-lg-6 align-self-end">
                 <div class="dropdown">
-                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" id="secanteErro">
+                  <button class="btn btn-block btn-outline-primary dropdown-toggle" type="button" data-toggle="dropdown" name="secanteErro">
                     Critério de Parada
                   </button>
 
                   <div class="dropdown-menu w-100">
-                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="secanteErroAbsoluto">Erro Absoluto</button>
-                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" id="secanteErroRelativo">Erro Relativo</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" name="secanteErroAbsoluto">Erro Absoluto</button>
+                    <button class="dropdown-item text-primary font-weight-normal btn-block text-center" type="button" name="secanteErroRelativo">Erro Relativo</button>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
             </div>
             
             <div class="form-row mb-3">
-              <button class="btn btn-block btn-primary" type="button" name="secanteSalvar">
+              <button class="btn btn-block btn-primary" type="submit" name="secanteSalvar">
                 Calcular Raiz Aproximada
               </button>
             </div>
