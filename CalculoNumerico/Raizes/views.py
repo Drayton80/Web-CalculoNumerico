@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from numpy import *
+import numpy as np
+import math
+import matplotlib.pyplot as plt, mpld3
 
 # Create your views here.
 def paginaInicial(request):
@@ -51,5 +55,19 @@ def paginaInicial(request):
 			)
 		pass
 
-	contexto = {}
+	contexto = {'graph': grafico()}
 	return render(request, "Raizes/base.html", contexto)
+
+
+
+def grafico():
+	t = linspace(0,2*math.pi,400)
+	a = sin(t)
+	b = cos(t)
+	c = a + b
+	fig = plt.figure()
+	plt.style.use('ggplot')
+	plt.plot(t, a, t, b, t, c)
+	#mpld3.enable_notebook()
+	html_graph = mpld3.fig_to_html(fig)
+	return html_graph
