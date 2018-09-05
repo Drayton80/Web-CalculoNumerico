@@ -1,61 +1,68 @@
 from django.shortcuts import render
 from numpy import *
+from .algorithms1 import numeric_methods
 import numpy as np
 import math
 import matplotlib.pyplot as plt, mpld3
 
+
 # Create your views here.
+
+contexto = {}
 def paginaInicial(request):
 	if request.method == "POST" and 'falsaPosicaoSalvar' in request.POST:
 		print(request.POST)
-		equacao = request.POST.get('falsaPosicaoEquacaoInput')
-		LI = request.POST.get("falsaPosicaoLIInput")
-		LU = request.POST.get("falsaPosicaoLSInput")
-		tolerancia = request.POST.get("falsaPosicaoToleranciaInput")
-		erro = request.POST.get("falsaPosicaoErro")
+		equacao = numeric_methods.replace_Exponentiation(str(request.POST.get('falsaPosicaoEquacaoInput')))
+		LI = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("falsaPosicaoLIInput")))))
+		LU = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("falsaPosicaoLSInput")))))
+		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("falsaPosicaoToleranciaInput")))))
+		erro = str(request.POST.get("falsaPosicaoErro"))
 		print(
 			'equacao:' , equacao, '\n',
 			'Limite Inferior:' , LI, '\n',
 			'Limte Superior:' , LU, '\n',
-			'tolerancia:' , tolerancia, '\n'
+			'tolerancia:' , tol, '\n'
 			"Erro:", erro, '\n'
 			)
+		contexto['graph'] = grafico()
 		pass
 
 	elif request.method == "POST" and 'secanteSalvar' in request.POST:
 		print(request.POST)
-		equacao = request.POST.get('secanteEquacaoInput')
-		x0 = request.POST.get("secanteX0Input")
-		x1 = request.POST.get("secanteX1Input")
-		tolerancia = request.POST.get("falsaPosicaoToleranciaInput")
+		equacao = numeric_methods.replace_Exponentiation(str(request.POST.get('secanteEquacaoInput')))
+		x0 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("secanteX0Input")))))
+		x1 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("secanteX1Input")))))
+		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("falsaPosicaoToleranciaInput")))))
 		erro = request.POST.get("secateErro")
 		print(
 			'equacao:' , equacao, '\n',
 			'x0:' , x0, '\n',
 			'x1:' , x1, '\n',
-			'tolerancia:' , tolerancia, '\n',
+			'tolerancia:' , tol, '\n',
 			'Erro', erro, '\n',
 			)
 		pass
 
 	elif request.method == "POST" and 'mullerSalvar' in request.POST:
-		equacao = request.POST.get('mullerEquacaoInput')
-		x0 = request.POST.get("mullerX0Input")
-		x1 = request.POST.get("mullerX1Input")
-		x2 = request.POST.get("mullerX2Input")
-		tolerancia = request.POST.get("mullerToleranciaInput")
+		equacao = numeric_methods.replace_Exponentiation(str(request.POST.get('mullerEquacaoInput')))
+		x0 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerX0Input")))))
+		x1 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerX1Input")))))
+		x2 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerX2Input")))))
+		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerToleranciaInput")))))
 		erro = request.POST.get("mullerErro")
 		print(
 			'equacao:' , equacao, '\n',
 			'x0:' , x0, '\n',
 			'x1:' , x1, '\n',
 			'x2:' , x2, '\n',
-			'tolerancia:' , tolerancia, '\n',
+			'tolerancia:' , tol, '\n',
 			'Erro', erro, '\n',
 			)
+		result, itera = numeric_methods.muller(equacao,x0,x1,x2,tol)
+		contexto['resultadoMuller'] = result
+		contexto['iteracoesMuller'] = itera
 		pass
 
-	contexto = {'graph': grafico()}
 	return render(request, "Raizes/base.html", contexto)
 
 
