@@ -29,7 +29,7 @@ class numeric_methods:
 	#--------------Fim Calcula Função-----------------#
 
 	#-----------------Plota Função--------------------#
-	def plota_func(function):
+	def plota_func(function, xmin, xmax):
 
 		data = list(function)#Cria uma lista para verificar simbolos
 		func = function
@@ -38,7 +38,7 @@ class numeric_methods:
 			if aux == '^':
 				func = func.replace('^', '**')#Se '^' is True, replace para '**'
 
-		x = np.arange(-10, 10, 0.02)#Limitante de range do gráfico da função
+		x = np.arange(xmin, xmax, 0.02)#Limitante de range do gráfico da função
 
 		#print(x)
 		#print(func)

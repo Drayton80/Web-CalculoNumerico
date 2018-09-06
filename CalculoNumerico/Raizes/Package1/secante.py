@@ -24,7 +24,7 @@ class secante:
 			if abs(err)<tol:
 				return i, x
 				
-			fx0=fx1    # redefinir x0
+			fx0=fx1   #redefinir x0
 			fx1=x     #redefinir x1
 			i = i + 1
 
