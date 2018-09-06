@@ -1,10 +1,10 @@
-class secante:
+class metodo_secante:
 	def evalFunction(f, x):
 		x = eval(f)
 		return x
 
 
-	def Secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada):
+	def secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada):
 		# Os valores chegam como String, então é preciso convertê-los:
 		x0 = float(x0)
 		x1 = float(x1)
@@ -15,9 +15,9 @@ class secante:
 
 		while i <= limiteIteracoes:
 			# Cálculo da f(xk-1):
-			fx0 = secante.evalFunction(f, float(x0))
+			fx0 = metodo_secante.evalFunction(f, float(x0))
 			# Cálculo da f(xk):
-			fx1 = secante.evalFunction(f, float(x1))
+			fx1 = metodo_secante.evalFunction(f, float(x1))
 
 			# Cálculo do Próximo x
 			xP = (x0*fx1 - x1*fx0)/(fx1 - fx0)

@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt, mpld3
 import numpy as np
 from .Package1.muller import metodo_muller
-#from .Package1.secante import secante
+from .Package1.secante import metodo_secante
 from .Package1.falsaP2 import falsaP
 
 
@@ -16,6 +16,10 @@ class numeric_methods:
 
 	def falsaPosicao(fx, a, b, tol, maxI, tipoErro):	
 		return falsaP.falsaPosicao(fx, a, b, tol, maxI, tipoErro)
+
+	def secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada):
+		return metodo_secante.secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada)
+	
 
 	#Aux functions
 	def replace_Exponentiation(equation):

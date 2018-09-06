@@ -40,7 +40,7 @@ def paginaInicial(request):
 		equacao = numeric_methods.replace_Exponentiation(str(request.POST.get('secanteEquacaoInput')))
 		x0 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("secanteX0Input")))))
 		x1 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("secanteX1Input")))))
-		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("falsaPosicaoToleranciaInput")))))
+		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("secanteToleranciaInput")))))
 		erro = request.POST.get("secateErro")
 		xmin = float(request.POST.get("secanteGraficoMenorX"))
 		xmax = float(request.POST.get("secanteGraficoMaiorX"))
@@ -53,7 +53,11 @@ def paginaInicial(request):
 			"xmin:", xmin, '\n',
 			"xmax:", xmax, '\n'
 			)
-		contexto['graphFalsaPosicao'] = numeric_methods.plota_func(equacao, xmin, xmax)
+
+		result, itera = numeric_methods.secante(equacao,x0,x1,tol,1000,erro)
+		contexto['resultadoSecante'] = result
+		contexto['iteracoesSecante'] = itera
+		contexto['graphSecante'] = numeric_methods.plota_func(equacao, xmin, xmax)
 		pass
 
 	elif request.method == "POST" and 'mullerSalvar' in request.POST:
@@ -78,7 +82,7 @@ def paginaInicial(request):
 		result, itera = numeric_methods.muller(equacao,x0,x1,x2,tol,erro)
 		contexto['resultadoMuller'] = result
 		contexto['iteracoesMuller'] = itera
-		contexto['graphFalsaPosicao'] = numeric_methods.plota_func(equacao, xmin, xmax)
+		contexto['graphMuller'] = numeric_methods.plota_func(equacao, xmin, xmax)
 
 		pass
 
