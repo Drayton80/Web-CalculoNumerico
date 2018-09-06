@@ -78,13 +78,20 @@
             <!--| Resultado da Raiz |-->
             <div class="form-row">
               <label class="text-primary h6">Raiz Aproximada x* = </label>
-              <!-- TO DO Exibir Resultado -->
+              <label class="text-primary h6">{{resultadoFalsaPosicao}} </label>
+            </div>
+
+
+            <!--| Numero de iterações |-->
+            <div class="form-row">
+              <label class="text-primary h6">Numero de iterações = </label>
+              <label class="text-primary h6"> {{iteracoesFalsaPosicao}}</label>
             </div>
 
             <!--| Exibição do Gráfico |-->
             <div class="form-row">
-              <label class="text-primary h5" for="falsaPosicaoGrafico">Gráfico das Iterações </label>
-              {{graph|safe}}
+              <label class="text-primary h5" for="falsaPosicaoGrafico">Gráfico da função </label>
+              {{graphFalsaPosicao}}
             </div>
 
         </form>

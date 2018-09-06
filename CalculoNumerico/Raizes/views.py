@@ -24,7 +24,11 @@ def paginaInicial(request):
 			'tolerancia:' , tol, '\n'
 			"Erro:", erro, '\n'
 			)
-		contexto['graph'] = grafico()
+		result, itera = numeric_methods.falsaPosicao(equacao,LI,LU,tol,1000, erro)
+
+		contexto['resultadoFalsaPosicao'] = result
+		contexto['iteracoesFalsaPosicao'] = itera
+		contexto['graphFalsaPosicao'] = numeric_methods.plota_func(equacao)
 		pass
 
 	elif request.method == "POST" and 'secanteSalvar' in request.POST:
@@ -61,6 +65,8 @@ def paginaInicial(request):
 		result, itera = numeric_methods.muller(equacao,x0,x1,x2,tol)
 		contexto['resultadoMuller'] = result
 		contexto['iteracoesMuller'] = itera
+		contexto['graphMuller'] = numeric_methods.plota_func(equacao)
+
 		pass
 
 	return render(request, "Raizes/base.html", contexto)
