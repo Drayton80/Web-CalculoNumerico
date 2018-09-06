@@ -38,15 +38,14 @@ class numeric_methods:
 			if aux == '^':
 				func = func.replace('^', '**')#Se '^' is True, replace para '**'
 
-		x = np.arange(-100, 100, 0.02)#Limitante de range do gráfico da função
+		x = np.arange(-10, 10, 0.02)#Limitante de range do gráfico da função
 
 		#print(x)
 		#print(func)
 		#print(calculaFunc(x, func))
 		fig = plt.figure()
+		plt.style.use('ggplot')
 		plt.plot(x, numeric_methods.calculaFunc(x, func), 'k')#Plota o gráfico levando em consideração o resultado da função
-		plt.axhline(linewidth=0.9, color='black')#Cria a linha do eixo X
-		plt.axvline(linewidth=0.9, color='black')#Cria linha do eixo Y
 		html_graph = mpld3.fig_to_html(fig)
 		return html_graph
 		#print(func)

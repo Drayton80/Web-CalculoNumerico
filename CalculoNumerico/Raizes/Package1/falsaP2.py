@@ -18,7 +18,7 @@ class falsaP:
                 fb = falsaP.evalFunction(fx, b)
 
                 if falsaP.evalFunction(fx, a) * falsaP.evalFunction(fx, b) >= 0:
-                        raise Exception("A função deve ter sinais opostos para a e b")
+                        return "A função deve ter sinais opostos para a e b", nIteracoes
                 c = a
 
                 while (nIteracoes < maxI):
