@@ -67,8 +67,8 @@ def paginaInicial(request):
 		x2 = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerX2Input")))))
 		tol = str(eval(numeric_methods.replace_Exponentiation(str(request.POST.get("mullerToleranciaInput")))))
 		erro = request.POST.get("mullerErro")
-		xmin = float(request.POST.get("secanteGraficoMenorX"))
-		xmax = float(request.POST.get("secanteGraficoMaiorX"))
+		xmin = float(request.POST.get("mullerGraficoMenorX"))
+		xmax = float(request.POST.get("mullerGraficoMaiorX"))
 		print(
 			'equacao:' , equacao, '\n',
 			'x0:' , x0, '\n',

@@ -1,3 +1,5 @@
+import math
+
 class metodo_muller:
 	
 	def evalFunction(f,x):
@@ -35,12 +37,11 @@ class metodo_muller:
 
 			i += 1
 
-			p1 = (-2*c)/(b+((b**2)-4*a*c)**.5)
-			p2 = (-2*c)/(b-((b**2)-4*a*c)**.5)
-
 			if b>0:
+				p1 = (-2*c)/(b+math.sqrt((b**2)-4*a*c))
 				p3 = p1+ x2
 			if b<0:
+				p2 = (-2*c)/(b-math.sqrt((b**2)-4*a*c))
 				p3 = p2 + x2
 
 			#calculo do erro
