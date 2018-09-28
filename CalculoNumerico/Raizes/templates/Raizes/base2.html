@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+		{% load staticfiles %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{% static 'node_modules/bootstrap/compiler/bootstrap.css' %}" type = "text/css"/>
+	    <!-- Styles CSS -->
+		<link rel="stylesheet" href="{% static 'styles/css/style.css' %}" type = "text/css"/>
+
+	    <!-- Font Awesome -->
+		<link rel="stylesheet" href="{% static 'node_modules/font-awesome/css/font-awesome.css' %}" type = "text/css"/>
+
+		<title>Projeto de Cálculo Numérico</title>
+	</head>
+	<body>
+		{% include 'Raizes/navbar.html' %}
+		
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src='{% static "node_modules/jquery/dist/jquery.js" %}'></script>
+		<script src='{% static "node_modules/popper.js/dist/umd/popper.js" %}'></script>
+		<script src='{% static "node_modules/bootstrap/dist/js/bootstrap.js" %}'></script>
+	</body>
+</html>

@@ -36,7 +36,7 @@ class metodo_muller:
 			c = fp2
 
 			i += 1
-
+			print("a", a, "b", b, "c", c)
 			if b>0:
 				p1 = (-2*c)/(b+math.sqrt((b**2)-4*a*c))
 				p3 = p1+ x2
