@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Raizes.views import paginaInicial
+from Raizes.views import paginaInicial, miniProjeto2
 
 urlpatterns = [
 	path('', paginaInicial, name = 'home'),
+	path('MiniProjeto2/', miniProjeto2, name = 'miniProjeto2' )
     path('admin/', admin.site.urls),
 ]

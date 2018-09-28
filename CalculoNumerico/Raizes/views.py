@@ -87,3 +87,11 @@ def paginaInicial(request):
 		pass
 
 	return render(request, "Raizes/base.html", contexto)
+
+
+
+def miniProjeto2(request):
+	print(request)
+	#if request.method == "POST" and 'sistemasLineares' in request.POST:
+	return render(request, "Raizes/base2.html", contexto)
+
