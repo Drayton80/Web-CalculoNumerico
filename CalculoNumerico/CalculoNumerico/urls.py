@@ -19,6 +19,6 @@ from Raizes.views import paginaInicial, miniProjeto2
 
 urlpatterns = [
 	path('', paginaInicial, name = 'home'),
-	path('MiniProjeto2/', miniProjeto2, name = 'miniProjeto2' )
+	path('MiniProjeto2/', miniProjeto2, name = 'miniProjeto2' ),
     path('admin/', admin.site.urls),
 ]

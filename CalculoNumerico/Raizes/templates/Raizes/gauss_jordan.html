@@ -14,102 +14,23 @@
 
         <div class="col-sm-6 col-md-8 col-lg-10">
           <form method="POST"> {% csrf_token %} 
+            
+            <div class="d-flex justify-content-center">
+              <label class="text-primary">Tamanho do Sistema Linear</label>
+            </div>
 
-            <!--| Equação de f(x) |-->
             <div class="form-row mb-3">
-              <label class="text-primary" for="falsaPosicaoEquacao">Equação de f(x)</label>
-              <input type="text" class="form-control" id="falsaPosicaoEquacaoInput" placeholder="Ex.: x^2-2*x" name = "falsaPosicaoEquacaoInput">
-            </div>
-
-            <!--| Definição do Intervalo |-->
-            <div class="form-row">
-              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
-                <label class="text-primary" for="falsaPosicaoLI">Limite Inferior</label>
-                <input type="text" class="form-control" id="falsaPosicaoLIInput" placeholder="Ex.: 1" name = "falsaPosicaoLIInput">
+              <!--| Tamanho da Matriz A |-->
+              <div class="form-group col-lg-6">
+                <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="Coloque valores inteiros entre 2 e 5" name = "gaussJordanTamanhoInput">
               </div>
 
-              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
-                <label class="text-primary" for="falsaPosicaoLS">Limite Superior</label>
-                <input type="text" class="form-control" id="falsaPosicaoLSInput" placeholder="Ex.: 3" name = "falsaPosicaoLSInput">
-              </div>
+              <!--| Botão de Salvar |-->
+              <div class="form-group col-lg-6 align-self-end">
+                <button class="btn btn-block btn-primary" type="submit" name="falsaPosicaoSalvar">
+                  Atualizar Valor
+                </button>
+              </div>              
             </div>
-
-            <!--| Critério de Parada |-->
-            <div class="form-row d-flex">
-              <!-- Formulário -->
-              <div class="form-group col-sm-6 col-md-6 col-lg-6">
-                <!-- label -->
-                <label class="text-primary" for="falsaPosicaoTolerancia">Tolerância</label>
-                <!-- input -->
-                <input type="text" class="form-control" id="falsaPosicaoToleranciaInput" placeholder="Ex.: 10^-3" name = "falsaPosicaoToleranciaInput">
-              </div>
-
-              <!-- Formulário -->
-              <div class="form-group col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 ml-1">
-                <!-- label -->
-                <div class="form-row">
-                  <label class="text-primary mb-1" for="falsaPosicaoErro">Critério de Parada</label>
-                </div>
-                <!-- radios -->
-                <div class="form-row align-self-center">
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios1" value="erroAbsoluto" checked>
-                    <label class="form-check-label text-primary">
-                      Erro Absoluto
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="falsaPosicaoErro" id="exampleRadios2" value="erroRelativo">
-                    <label class="form-check-label text-primary">
-                      Erro Relativo
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--| Propriedades do Gráfico |-->
-            <div class="form-row mt-1 mb-1">
-              <label class="text-primary text-center h5">Propriedades de Exibição do Gráfico</label>
-            </div>
-            
-            <div class="form-row mb-2">
-              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
-                <label class="text-primary">Menor Abscissa Exibida</label>
-                <input type="text" class="form-control" id="falsaPosicaoGraficoMenorX" placeholder="Ex.: 0" name = "falsaPosicaoGraficoMenorX">
-              </div>
-
-              <div class="form-group col-sm-6 col-md-6 col-lg-6 mb-3">
-                <label class="text-primary">Maior Abscissa Exibida</label>
-                <input type="text" class="form-control" id="falsaPosicaoGraficoMaiorX" placeholder="Ex.: 6" name = "falsaPosicaoGraficoMaiorX">
-              </div>
-            </div>
-
-            <!--| Botão de Salvar |-->
-            <div class="form-row mb-4">
-              <button class="btn btn-block btn-primary" type="submit" name="falsaPosicaoSalvar">
-                Calcular Raiz Aproximada
-              </button>
-            </div>
-            
-            <!--| Resultado da Raiz |-->
-            <div class="form-row">
-              <label class="text-primary h6">Raiz Aproximada x* = </label>
-              <label class="text-primary h6">{{resultadoFalsaPosicao}} </label>
-            </div>
-
-
-            <!--| Numero de iterações |-->
-            <div class="form-row">
-              <label class="text-primary h6">Numero de iterações = </label>
-              <label class="text-primary h6"> {{iteracoesFalsaPosicao}}</label>
-            </div>
-
-            <!--| Exibição do Gráfico |-->
-            <div class="form-row">
-              <label class="text-primary h5" for="falsaPosicaoGrafico">Gráfico da função </label>
-              {{graphFalsaPosicao|safe}}
-            </div>
-
         </form>
       </div>
