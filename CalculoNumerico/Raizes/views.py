@@ -91,7 +91,11 @@ def paginaInicial(request):
 
 
 def miniProjeto2(request):
-	print(request)
+	contexto['tagteste'] = "<div class=\"form-group col-lg-6\"> <input type=\"text\" class=\"form-control\" id=\"gaussJordanTamanhoInput\" placeholder=\"Coloque valores inteiros entre 2 e 5\" name = \"gaussJordanTamanhoInput\"> </div>"
+	if request.method == "POST" and 'tamanhoSistema' in request.POST:
+		contexto['tamanhoSistema'] = range(int(request.POST.get('gaussJordanTamanhoInput')))
+	
 	#if request.method == "POST" and 'sistemasLineares' in request.POST:
 	return render(request, "Raizes/base2.html", contexto)
+
 
