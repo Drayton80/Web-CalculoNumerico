@@ -21,9 +21,16 @@
 
         <div class="form-row mb-3">
           <!--| Tamanho da Matriz A |-->
-          
           <div class="form-group col-lg-6">
-            <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="Coloque valores inteiros entre 2 e 5" name = "gaussJordanTamanhoInput">
+            <select class="custom-select" id="gaussJordanTamanhoInput">
+              <option selected>Escolha o tamanho da Matriz...</option>
+              <option value="2">Ordem 2</option>
+              <option value="3">Ordem 3</option>
+              <option value="4">Ordem 4</option>
+              <option value="5">Ordem 5</option>
+              <option value="6">Ordem 6</option>
+              <option value="7">Ordem 7</option>
+            </select>
           </div>
 
           <!--| Botão de Salvar |-->
@@ -38,6 +45,20 @@
       {% for i in tamanhoSistema %}
         <p>{{i}}</p>
       {% endfor%}
+
+      <div class="d-flex justify-content-center">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a11" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a12" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a13" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a14" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a15" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a16" name = "gaussJordanTamanhoInput">
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a21" name = "gaussJordanTamanhoInput">
+        <input type="text" class="form-control" id="gaussJordanTamanhoInput" placeholder="a22" name = "gaussJordanTamanhoInput">
+      </div>
     </div>
   </div>
 </div>
