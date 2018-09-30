@@ -1,0 +1,97 @@
+<div class="container mt-5">
+      
+      <!--| Nome do Método |-->
+  <div class="row">
+    <div class="col-12 text-center mt-4 mb-2 text-primary">
+      <h2>Método de Newton para Sistemas Não-lineares</h2>
+    </div>
+  </div>
+  <!--|----------------|-->
+
+
+  <!--| Inputs de Atributos |-->
+  <div class="row justify-content-center">
+
+    <div class="col-sm-6 col-md-8 col-lg-10">
+
+      <form method="POST" > {% csrf_token %} 
+        
+        <div class="d-flex justify-content-center">
+          <label class="text-primary">Tamanho do Sistema Linear</label>
+        </div>
+
+        <div class="form-row mb-2">
+          <!--| Tamanho da Matriz A |-->
+          <div class="form-group col-lg-6">
+            <select class="custom-select" id="gaussJordanTamanhoInput" name = "gaussJordanTamanhoInput">
+              <option value = "0" selected>Escolha o tamanho do Vetor F(x)...</option>
+              <option value="2">Tamanho 2</option>
+              <option value="3">Tamanho 3</option>
+              <option value="4">Tamanho 4</option>
+              <option value="5">Tamanho 5</option>
+              <option value="6">Tamanho 6</option>
+              <option value="7">Tamanho 7</option>
+            </select> 
+
+          </div> 
+
+          <!--| Botão de Salvar |-->
+          <div class="form-group col-lg-6 align-self-end">
+           <button class="btn btn-block btn-primary" type="submit">
+              Atualizar Valor
+            </button>
+          </div>   
+
+        </div>
+      </form>
+
+      {%if tamanho == True%}
+      <form method="POST" > {% csrf_token %} 
+        {{matrizTotal|safe}}
+
+        <!--| Critério de Parada |-->
+        <div class="d-flex mt-3 justify-content-center">
+          <!-- Formulário -->
+          <div class="form-group">
+            <!-- label -->
+            <label class="text-primary" for="newtonTolerancia">Tolerância</label>
+            <!-- input -->
+            <input type="text" class="form-control" id="newtonToleranciaInput" placeholder="Ex.: 10^-3" name = "newtonToleranciaInput">
+          </div>
+
+          <!-- Formulário -->
+          <div class="form-group col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 ml-1">
+            <!-- label -->
+            <div class="form-row">
+              <label class="text-primary mb-1" for="newtonErro">Critério de Parada</label>
+            </div>
+            <!-- radios -->
+            <div class="form-row align-self-center">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="newtonErro" id="newtonRadios1" value="erroAbsoluto" checked>
+                <label class="form-check-label text-primary">
+                  Erro Absoluto
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="newtonErro" id="newtonRadios2" value="erroRelativo">
+                <label class="form-check-label text-primary">
+                  Erro Relativo
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center mt-2">
+          <button class="btn btn-block btn-primary" type="submit" name="valoresNewton" value = "True">
+            Calcular Vetor x*
+          </button>
+        </div>
+
+      </form>
+      {%endif%}
+
+    </div>
+  </div>
+</div>

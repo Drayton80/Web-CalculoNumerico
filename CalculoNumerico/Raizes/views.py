@@ -106,7 +106,7 @@ def tagMatriz(tamanho, metodo):
 					tag += 'id=\"' + metodo + 'a' + str(i) + str(j) + '\"'
 					tag += 'name = \"' + metodo + 'a' + str(i) + str(j) + '\">'
 				else:
-					tag += '<input type=\"text\" class=\"form-control\"'
+					tag += '<input type=\"text\" class=\"form-control ml-4\"'
 					tag += 'placeholder=\"b' +  str(i) + "\""
 					tag += 'id=\"' + metodo + 'b' + str(i) + '\"'
 					tag += 'name = \"' + metodo + 'b' + str(i) + '\">'
