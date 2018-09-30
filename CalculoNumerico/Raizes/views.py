@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt, mpld3
 # Create your views here.
 
 contexto = {}
+
 def paginaInicial(request):
 	if request.method == "POST" and 'falsaPosicaoSalvar' in request.POST:
 		print(request.POST)
@@ -89,13 +90,69 @@ def paginaInicial(request):
 	return render(request, "Raizes/base.html", contexto)
 
 
+def tagMatriz(tamanho, metodo):
+	#Criação da matriz
+	tag = ''
+	for i in range(1, tamanho + 1):
+		#Começo da linha
+		tag += '<div class=\"d-flex justify-content-center\">'
+		if(metodo == "gaussJordan"):
+			for j in range(1, tamanho + 2):
+				if(j != tamanho + 1):
+					#Imput
+					#Basico da criação do imput
+					tag += '<input type=\"text\" class=\"form-control\"'
+					tag += 'placeholder=\"a' +  str(i) + str(j) + "\""
+					tag += 'id=\"' + metodo + 'a' + str(i) + str(j) + '\"'
+					tag += 'name = \"' + metodo + 'a' + str(i) + str(j) + '\">'
+				else:
+					tag += '<input type=\"text\" class=\"form-control\"'
+					tag += 'placeholder=\"b' +  str(i) + "\""
+					tag += 'id=\"' + metodo + 'b' + str(i) + '\"'
+					tag += 'name = \"' + metodo + 'b' + str(i) + '\">'
+		else:
+			for j in range(1, tamanho + 1):
+				tag += '<input type=\"text\" class=\"form-control\"'
+				tag += 'placeholder=\"a' +  str(i) + str(j) + "\""
+				tag += 'id=\"' + metodo + 'a' + str(i) + str(j) + '\"'
+				tag += 'name = \"' + metodo + 'a' + str(i) + str(j) + '\">'
+
+		#Fim da linha
+		tag += '</div>'
+	return tag
+
+def backLista(tamanho, metodo, request):
+	matriz = []
+	for i in range(1, tamanho + 1):
+		linha = []
+		for j in range(1, tamanho + 1):
+			linha.append(int(request.POST.get(metodo + 'a'  + str(i) + str(j))))
+		matriz.append(linha)
+
+	resultado = []
+	for i in range(1, tamanho + 1):
+		if(metodo == "gaussJordan"):
+			resultado.append(int(request.POST.get(metodo + 'b'  + str(i))))
+		else:
+			resultado.append(0)
+	return matriz, resultado
+
 
 def miniProjeto2(request):
-	contexto['tagteste'] = "<div class=\"form-group col-lg-6\"> <input type=\"text\" class=\"form-control\" id=\"gaussJordanTamanhoInput\" placeholder=\"Coloque valores inteiros entre 2 e 5\" name = \"gaussJordanTamanhoInput\"> </div>"
-	if request.method == "POST" and 'tamanhoSistema' in request.POST:
-		contexto['tamanhoSistema'] = range(int(request.POST.get('gaussJordanTamanhoInput')))
-	
-	#if request.method == "POST" and 'sistemasLineares' in request.POST:
+	print(request.POST)
+	if request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST:
+		contexto['tamanhoGauss'] = int(request.POST.get('gaussJordanTamanhoInput'))
+		if contexto['tamanhoGauss'] != 0:
+			contexto['matrizTotal'] = tagMatriz(contexto['tamanhoGauss'], "gaussJordan")
+			contexto['tamanho'] = True
+
+	#Bom, montei a matriz, agora eu preciso processar os valores dela
+	elif request.method == "POST" and request.POST.get('valoresJordan') == "True":
+		matriz, resultado = backLista(contexto['tamanhoGauss'], "gaussJordan", request)
+		print("MATRIZ-----", matriz, "VETOR RESULTADO-------",resultado, sep = '\n')
+
+
+	#elif request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST
 	return render(request, "Raizes/base2.html", contexto)
 
 
