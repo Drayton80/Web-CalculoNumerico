@@ -1,0 +1,71 @@
+<div class="container mt-5">
+      
+      <!--| Nome do Método |-->
+  <div class="row">
+    <div class="col-12 text-center mt-4 mb-2 text-primary">
+      <h2>Método da Spline (Cúbica)</h2>
+    </div>
+  </div>
+  <!--|----------------|-->
+
+
+  <!--| Inputs de Atributos |-->
+  <div class="row justify-content-center">
+
+    <div class="col-sm-6 col-md-8 col-lg-10">
+
+      <form method="POST" > {% csrf_token %} 
+        
+        <div class="d-flex justify-content-center">
+          <label class="text-primary">Quantidade de Pontos de Entrada</label>
+        </div>
+
+        <div class="form-row mb-2">
+          <!--| Tamanho da Matriz A |-->
+          <div class="form-group col-lg-6">
+            <select class="custom-select" id="splinesTamanhoInput" name = "splinesTamanhoInput">
+              <option value = "0" selected>Escolha a quantidade...</option>
+              <option value="2">2 Pontos</option>
+              <option value="3">3 Pontos</option>
+              <option value="4">4 Pontos</option>
+              <option value="5">5 Pontos</option>
+              <option value="6">6 Pontos</option>
+              <option value="7">7 Pontos</option>
+              <option value="8">8 Pontos</option>
+              <option value="9">9 Pontos</option>
+              <option value="10">10 Pontos</option>
+              <option value="11">11 Pontos</option>
+              <option value="12">12 Pontos</option>
+              <option value="13">13 Pontos</option>
+              <option value="14">14 Pontos</option>
+              <option value="15">15 Pontos</option>
+            </select> 
+
+          </div> 
+
+          <!--| Botão de Salvar |-->
+          <div class="form-group col-lg-6 align-self-end">
+           <button class="btn btn-block btn-primary" type="submit">
+              Atualizar Valor
+            </button>
+          </div>   
+
+        </div>
+      </form>
+
+      {%if tamanho == True%}
+      <form method="POST" > {% csrf_token %} 
+        {{matrizTotal|safe}}
+
+        <div class="d-flex align-items-center mt-3 mb-4">
+          <button class="btn btn-block btn-primary" type="submit" name="valoresNewton" value = "True">
+            Calcular a Função
+          </button>
+        </div>
+
+      </form>
+      {%endif%}
+
+    </div>
+  </div>
+</div>
