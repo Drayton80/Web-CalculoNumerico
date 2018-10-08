@@ -3,6 +3,8 @@ import numpy as np
 from .Package1.muller import metodo_muller
 from .Package1.secante import metodo_secante
 from .Package1.falsaP2 import falsaP
+from .Package2.gaussjordan import gj
+
 
 
 class numeric_methods:
@@ -20,6 +22,8 @@ class numeric_methods:
 	def secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada):
 		return metodo_secante.secante(f, x0, x1, tolerancia, limiteIteracoes, criterioParada)
 	
+	def gaussjordan(matriz,b):
+		return gj(matriz,b)
 
 	#Aux functions
 	def replace_Exponentiation(equation):

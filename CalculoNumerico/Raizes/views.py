@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from numpy import *
 from .algorithms1 import numeric_methods
 import numpy as np
 import math
@@ -149,9 +148,11 @@ def miniProjeto2(request):
 	#Bom, montei a matriz, agora eu preciso processar os valores dela
 	elif request.method == "POST" and request.POST.get('valoresJordan') == "True":
 		matriz, resultado = backLista(contexto['tamanhoGauss'], "gaussJordan", request)
-		print("MATRIZ-----", matriz, "VETOR RESULTADO-------",resultado, sep = '\n')
+		x = numeric_methods.gaussjordan(matriz, resultado)
+		print("MATRIZ-----", matriz, "VETOR RESULTADO-------",resultado, "VALORES DE X:", x, sep = '\n')
+			
 
-
+	teste = '<input class="form-control" type="text" placeholder="Readonly input here…" readonly>'
 	#elif request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST
 	return render(request, "Raizes/base2.html", contexto)
 
