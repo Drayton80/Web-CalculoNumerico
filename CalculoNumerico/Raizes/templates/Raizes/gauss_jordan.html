@@ -17,7 +17,7 @@
       <form method="POST" > {% csrf_token %} 
         
         <div class="d-flex justify-content-center">
-          <label class="text-primary">Tamanho do Sistema Linear</label>
+          <label class="text-primary h5">Tamanho do Sistema Linear</label>
         </div>
 
         <div class="form-row mb-2">
@@ -46,35 +46,35 @@
         </div>
       </form>
 
-      {%if tamanho == True%}
-      <form method="POST" > {% csrf_token %} 
-        {{matrizTotal|safe}}
 
-        <div class="d-flex align-items-center mt-4">
-          <button class="btn btn-block btn-primary" type="submit" name="valoresJordan" value = "True">
-            Calcular o Vetor x
-          </button>
-      </form>
-      {%endif%}
+        {%if tamanho == True%}
+        <form method="POST" > {% csrf_token %} 
+          {{matrizTotal|safe}}
 
-      <div class="d-flex flex-column align-items-center mt-3 mb-4">
+          <div class="d-flex flex-column align-items-center mt-4 mb-4">
+            <button class="btn btn-block btn-primary" type="submit" name="valoresJordan" value = "True">
+              Calcular o Vetor x
+            </button>
+          </div>
+        </form>
+        {%endif%}
+        
+        <div class="d-flex flex-column align-items-center">
+
+          <label class="text-primary h5">Vetor Aproximado x*:</label>
+
           <div class="d-flex align-items-center">
-            <label class="text-primary h5">Vetor Aproximado x*:</label>
+              <!-- Gera os inputs aqui -->
+            <div class="d-flex flex-column align-items-center">
+                <label class="text-primary h5">Valor1</label>
+                <label class="text-primary h5">Valor2</label>
+               <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+              <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+            </div>
           </div>
 
-      <div class="d-flex flex-column align-items-center">
-        <div class="d-flex align-items-center">
-            <!-- Gera os inputs aqui -->
-          <div class="d-flex flex-column align-items-center">
-              <label class="text-primary h5">Valor1</label>
-              <label class="text-primary h5">Valor2</label>
-             <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
-            <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
-          </div>
         </div>
-      </div>
-          
-      </div>
+        
 
     </div>
   </div>
