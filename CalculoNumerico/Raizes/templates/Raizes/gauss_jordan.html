@@ -47,9 +47,15 @@
       </form>
 
 
+<<<<<<< HEAD
         {%if tamanhoGauss == True%}
         <form method="POST" > {% csrf_token %} 
           {{matrizGauss|safe}}
+=======
+        {%if tamanho == True%}
+        <form method="POST" > {% csrf_token %} 
+          {{matrizTotal|safe}}
+>>>>>>> dd93a64db0c568b87e4af272328f0584efa22eef
 
           <div class="d-flex flex-column align-items-center mt-4 mb-4">
             <button class="btn btn-block btn-primary" type="submit" name="valoresJordan" value = "True">
@@ -60,6 +66,7 @@
         {%endif%}
         
         <div class="d-flex flex-column align-items-center">
+<<<<<<< HEAD
 
           <label class="text-primary h5">Vetor Aproximado x*:</label>
 
@@ -72,7 +79,21 @@
               
             </div>
 
+=======
+
+          <label class="text-primary h5">Vetor Aproximado x*:</label>
+
+          <div class="d-flex align-items-center">
+              <!-- Gera os inputs aqui -->
+            <div class="d-flex flex-column align-items-center">
+                <label class="text-primary h5">Valor1</label>
+                <label class="text-primary h5">Valor2</label>
+               <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+              <input class="form-control" type="text" placeholder="Readonly input here…" readonly>
+            </div>
+>>>>>>> dd93a64db0c568b87e4af272328f0584efa22eef
           </div>
+
         </div>
         
 
