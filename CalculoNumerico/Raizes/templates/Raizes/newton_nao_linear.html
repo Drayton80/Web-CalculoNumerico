@@ -17,7 +17,7 @@
       <form method="POST" > {% csrf_token %} 
         
         <div class="d-flex justify-content-center">
-          <label class="text-primary">Tamanho do Sistema Linear</label>
+          <label class="text-primary">Tamanho do Sistema Não-Linear</label>
         </div>
 
         <div class="form-row mb-2">
@@ -45,9 +45,9 @@
         </div>
       </form>
 
-      {%if tamanho == True%}
+      {%if tamanhoNewton == True%}
       <form method="POST" > {% csrf_token %} 
-        {{matrizTotal|safe}}
+        {{matrizNewton|safe}}
 
         <!--| Critério de Parada |-->
         <div class="d-flex mt-3 justify-content-center">
@@ -91,6 +91,22 @@
 
       </form>
       {%endif%}
+
+        <div class="d-flex flex-column align-items-center">
+
+          <label class="text-primary h5">Vetor Aproximado x*:</label>
+
+          <div class="d-flex align-items-center">
+
+              <!-- Gera os inputs aqui -->
+            <div class="d-flex flex-column align-items-center">
+
+              {{resultadoNewton|safe}}
+              
+            </div>
+
+          </div>
+        </div>
 
     </div>
   </div>

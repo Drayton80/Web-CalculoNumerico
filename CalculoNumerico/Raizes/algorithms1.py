@@ -3,7 +3,10 @@ import numpy as np
 from .Package1.muller import metodo_muller
 from .Package1.secante import metodo_secante
 from .Package1.falsaP2 import falsaP
+
+#miniprojeto 2
 from .Package2.gaussjordan import gj
+from .Package2.NewtonNonLinearSystems import NewtonNonLinearSystems
 
 
 
@@ -24,6 +27,13 @@ class numeric_methods:
 	
 	def gaussjordan(matriz,b):
 		return gj(matriz,b)
+
+	def NewtonNonLinear(funcoes, x0, tol):
+		tolerancia = eval(tol)
+		newton = NewtonNonLinearSystems()
+
+		return newton.get_root(funcoes, x0, tolerancia)
+
 
 	#Aux functions
 	def replace_Exponentiation(equation):

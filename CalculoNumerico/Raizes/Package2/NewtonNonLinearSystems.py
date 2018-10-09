@@ -149,7 +149,8 @@ class NewtonNonLinearSystems:
 	def set_fx7(self, fx7):
 		self.fx7 = fx7
 
-''' Ex. de Uso:
+'''
+Ex. de Uso:
 newton = NewtonNonLinearSystems()
 
 fx = ["x1+x2-3","x1**2+x2**2-9"]

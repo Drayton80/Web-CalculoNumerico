@@ -109,48 +109,85 @@ def tagMatriz(tamanho, metodo):
 					tag += 'placeholder=\"b' +  str(i) + "\""
 					tag += 'id=\"' + metodo + 'b' + str(i) + '\"'
 					tag += 'name = \"' + metodo + 'b' + str(i) + '\">'
-		else:
-			for j in range(1, tamanho + 1):
-				tag += '<input type=\"text\" class=\"form-control\"'
-				tag += 'placeholder=\"a' +  str(i) + str(j) + "\""
-				tag += 'id=\"' + metodo + 'a' + str(i) + str(j) + '\"'
-				tag += 'name = \"' + metodo + 'a' + str(i) + str(j) + '\">'
+
+		elif metodo == "NewtonNaoLinear":
+			tag += '<input type=\"text\" class=\"form-control\"'
+			tag += 'placeholder=\"f(x' +  str(i) + ")\""
+			tag += 'id=\"' + metodo + 'fx' + str(i) + '\"'
+			tag += 'name = \"' + metodo + 'fx' + str(i) + '\">'
+
+			tag += '<input type=\"text\" class=\"form-control ml-2\"'
+			tag += 'placeholder=\"Valor inicial x' + str(i) + '\"'
+			tag += 'id=\"' + metodo + 'x' + str(i) + '\"'
+			tag += 'name = \"' + metodo + 'x' + str(i) + '\">'
 
 		#Fim da linha
 		tag += '</div>'
 	return tag
 
-def backLista(tamanho, metodo, request):
-	matriz = []
-	for i in range(1, tamanho + 1):
-		linha = []
-		for j in range(1, tamanho + 1):
-			linha.append(int(request.POST.get(metodo + 'a'  + str(i) + str(j))))
-		matriz.append(linha)
+def tagVetorResposta(valores):
+	tag = '<div class=\"d-flex flex-column align-items-center\">'
+	for valor in valores:
+		tag += '<input class="form-control\" type=\"text\"'
+		tag += 'placeholder = \"' + str(valor) + '\" readonly>'
 
-	resultado = []
-	for i in range(1, tamanho + 1):
-		if(metodo == "gaussJordan"):
+	tag += '</div>'
+	return tag
+
+def backTagGeradas(tamanho, metodo, request):
+	if metodo == "gaussJordan":		
+		matriz = []
+		resultado = []
+		for i in range(1, tamanho + 2):
+			print("oooooooooooooooooooiiiiiiiiiiiiiiiI", i)
+			linha = []
 			resultado.append(int(request.POST.get(metodo + 'b'  + str(i))))
-		else:
-			resultado.append(0)
-	return matriz, resultado
+			for j in range(1, tamanho + 2):
+				linha.append(int(request.POST.get(metodo + 'a'  + str(i) + str(j))))
+			matriz.append(linha)
+
+		return matriz, resultado
+
+	elif metodo == "NewtonNaoLinear":
+		funcoes = []
+		x0 = []
+		for i in range(1, tamanho + 2):
+			funcoes.append(str(request.POST.get(metodo + 'fx'  + str(i))))
+			x0.append(int(request.POST.get(metodo + 'x'  + str(i))))
+		return funcoes, x0
+
 
 
 def miniProjeto2(request):
 	print(request.POST)
+
+	#Monta matriz Gauss
 	if request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST:
 		contexto['tamanhoGauss'] = int(request.POST.get('gaussJordanTamanhoInput'))
 		if contexto['tamanhoGauss'] != 0:
-			contexto['matrizTotal'] = tagMatriz(contexto['tamanhoGauss'], "gaussJordan")
-			contexto['tamanho'] = True
+			contexto['matrizGauss'] = tagMatriz(contexto['tamanhoGauss'], "gaussJordan")
+			contexto['tamanhoGauss'] = True
+	#Monta lista de funções de newton
+	elif request.method == "POST" and 'newtonTamanhoInput' in request.POST:
+		contexto['tamanhoJordan'] = int(request.POST.get('newtonTamanhoInput'))
+		if contexto['tamanhoJordan'] != 0:
+			contexto['matrizNewton'] = tagMatriz(contexto['tamanhoJordan'], "NewtonNaoLinear")
+			contexto['tamanhoNewton'] = True
 
-	#Bom, montei a matriz, agora eu preciso processar os valores dela
+	#Processamento dos valores de Gauss
 	elif request.method == "POST" and request.POST.get('valoresJordan') == "True":
-		matriz, resultado = backLista(contexto['tamanhoGauss'], "gaussJordan", request)
+		matriz, resultado = backTagGeradas(contexto['tamanhoGauss'], "gaussJordan", request)
 		x = numeric_methods.gaussjordan(matriz, resultado)
 		print("MATRIZ-----", matriz, "VETOR RESULTADO-------",resultado, "VALORES DE X:", x, sep = '\n')
-			
+		contexto['resultadoGauss'] = tagVetorResposta(x)
+
+
+	elif request.method == "POST" and request.POST.get('valoresNewton') == "True":
+		fx, x0 = backTagGeradas(contexto['tamanhoNewton'], "NewtonNaoLinear", request)
+		tolerancia = numeric_methods.replace_Exponentiation(request.POST.get('newtonToleranciaInput'))
+		x = numeric_methods.NewtonNonLinear(fx, x0, tolerancia)
+		print("Lista-----", fx, "VETOR chutes-------", x0, "VALORES DE X*:", x, sep = '\n')
+		contexto['resultadoNewton'] = tagVetorResposta(x)
 
 	teste = '<input class="form-control" type="text" placeholder="Readonly input here…" readonly>'
 	#elif request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST
