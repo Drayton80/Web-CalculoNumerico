@@ -121,6 +121,17 @@ def tagMatriz(tamanho, metodo):
 			tag += 'id=\"' + metodo + 'x' + str(i) + '\"'
 			tag += 'name = \"' + metodo + 'x' + str(i) + '\">'
 
+		elif metodo == "splinesCubico":
+			tag += '<input type=\"text\" class=\"form-control\"'
+			tag += 'placeholder=\"ponto x' +  str(i) + "\""
+			tag += 'id=\"' + metodo + 'x' + str(i) + '\"'
+			tag += 'name = \"' + metodo + 'x' + str(i) + '\">'
+
+			tag += '<input type=\"text\" class=\"form-control ml-2\"'
+			tag += 'placeholder=\"ponto y' + str(i) + '\"'
+			tag += 'id=\"' + metodo + 'y' + str(i) + '\"'
+			tag += 'name = \"' + metodo + 'y' + str(i) + '\">'
+
 		#Fim da linha
 		tag += '</div>'
 	return tag
@@ -156,6 +167,15 @@ def backTagGeradas(tamanho, metodo, request):
 			x0.append(int(request.POST.get(metodo + 'x'  + str(i))))
 		return funcoes, x0
 
+	elif metodo == "splinesCubico":
+		x = []
+		y = []
+		for i in range(1, tamanho + 1):
+			x.append(int(request.POST.get(metodo + 'x'  + str(i))))
+			y.append(int(request.POST.get(metodo + 'y'  + str(i))))
+		return x, y
+
+
 
 
 def miniProjeto2(request):
@@ -163,33 +183,47 @@ def miniProjeto2(request):
 
 	#Monta matriz Gauss
 	if request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST:
-		contexto['tamanhoGauss'] = int(request.POST.get('gaussJordanTamanhoInput'))
-		if contexto['tamanhoGauss'] != 0:
-			contexto['matrizGauss'] = tagMatriz(contexto['tamanhoGauss'], "gaussJordan")
+		contexto['ordemGauss'] = int(request.POST.get('gaussJordanTamanhoInput'))
+		if contexto['ordemGauss'] != 0:
+			contexto['matrizGauss'] = tagMatriz(contexto['ordemGauss'], "gaussJordan")
 			contexto['tamanhoGauss'] = True
+
 	#Monta lista de funções de newton
 	elif request.method == "POST" and 'newtonTamanhoInput' in request.POST:
-		contexto['tamanhoJordan'] = int(request.POST.get('newtonTamanhoInput'))
-		if contexto['tamanhoJordan'] != 0:
-			contexto['matrizNewton'] = tagMatriz(contexto['tamanhoJordan'], "NewtonNaoLinear")
+		contexto['ordemNewton'] = int(request.POST.get('newtonTamanhoInput'))
+		if contexto['ordemNewton'] != 0:
+			contexto['matrizNewton'] = tagMatriz(contexto['ordemNewton'], "NewtonNaoLinear")
 			contexto['tamanhoNewton'] = True
+
+	#Monta lista de funções de splines
+	elif request.method == "POST" and 'splinesTamanhoInput' in request.POST:
+		contexto['ordemSplines'] = int(request.POST.get('splinesTamanhoInput'))
+		if contexto['ordemSplines'] != 0:
+			contexto['matrizSplines'] = tagMatriz(contexto['ordemSplines'], "splinesCubico")
+			contexto['tamanhoSplines'] = True
+
 
 	#Processamento dos valores de Gauss
 	elif request.method == "POST" and request.POST.get('valoresJordan') == "True":
-		matriz, resultado = backTagGeradas(contexto['tamanhoGauss'], "gaussJordan", request)
+		matriz, resultado = backTagGeradas(contexto['ordemGauss'], "gaussJordan", request)
 		x = numeric_methods.gaussjordan(matriz, resultado)
 		print("MATRIZ-----", matriz, "VETOR RESULTADO-------",resultado, "VALORES DE X:", x, sep = '\n')
 		contexto['resultadoGauss'] = tagVetorResposta(x)
 
-
+	#Processamento dos valores de Newton
 	elif request.method == "POST" and request.POST.get('valoresNewton') == "True":
-		fx, x0 = backTagGeradas(contexto['tamanhoNewton'], "NewtonNaoLinear", request)
+		fx, x0 = backTagGeradas(contexto['ordemSplines'], "NewtonNaoLinear", request)
 		tolerancia = numeric_methods.replace_Exponentiation(request.POST.get('newtonToleranciaInput'))
 		x = numeric_methods.NewtonNonLinear(fx, x0, tolerancia)
 		print("Lista-----", fx, "VETOR chutes-------", x0, "VALORES DE X*:", x, sep = '\n')
 		contexto['resultadoNewton'] = tagVetorResposta(x)
 
-	teste = '<input class="form-control" type="text" placeholder="Readonly input here…" readonly>'
+	elif request.method == "POST" and request.POST.get('valoresSplines') == "True":
+		x, y = backTagGeradas(contexto['ordemSplines'], "splinesCubico", request)
+		print("Valores em x-----", x, "Valores em y------", y, sep = '\n')
+		funcoes = numeric_methods.splinesCubico(x,y)
+		contexto['resultadoSplines'] = tagVetorResposta(funcoes)
+
 	#elif request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST
 	return render(request, "Raizes/base2.html", contexto)
 

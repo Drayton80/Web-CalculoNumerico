@@ -2,7 +2,7 @@
 #Recebe uma lista com os valores de x e uma com os valores de f(x)
 #Retorna uma lista com as expressoes formadas
 
-From scipy.interpolate import CubicSpline
+from scipy.interpolate import CubicSpline
 
 def naturalspline(x,y):
   
@@ -10,7 +10,8 @@ def naturalspline(x,y):
   a=list()
   b=list()
   c=list()
-  d=list() 
+  d=list()
+  s = [ ]
    
   cs = CubicSpline(x,y,bc_type='natural')
   
@@ -36,13 +37,38 @@ def naturalspline(x,y):
       s1=(str(a[i]),'+',str(b[i]),'*(x-',x0,') +',str(c[i]),'*(x-',x0,')**2 +',str(d[i]),'*(x-',x0,')**3')
       s.append(' '.join(s1))
         
-  print(s)
+  #print(retiraZero(s))
   return s
 
+def retiraZero(funcoes):
+  no_zero_f = []
+  i = 0
+  for funcao in funcoes:
+    no_zero = ''
+    inzero = no_zero.find('0.0')
+    if inzero == -1:
+      while inzero == -1:
+        primeiroEs = funcao.find(' ', inzero)
+        no_zero += funcao[:inzero]
+        no_zero += funcao[primeiroEs:]
+        inzero = funcao.find('0.0')
+        funcao = no_zero
+        i+=1
+        if i == 50:
+          print("Laço infinito")
+          break
+    else:
+      no_zero = funcao
+    no_zero_f.append(no_zero)
+  return no_zero_f
 
-'''
+
+
+
+
+
+
 x_points = [ 0, 1, 2, 3, 4, 5]
 y_points = [12,14,22,39,58,77]
 
 splin = naturalspline(x_points, y_points)
-'''

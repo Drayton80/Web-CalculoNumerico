@@ -7,6 +7,7 @@ from .Package1.falsaP2 import falsaP
 #miniprojeto 2
 from .Package2.gaussjordan import gj
 from .Package2.NewtonNonLinearSystems import NewtonNonLinearSystems
+from .Package2.splineCubic import naturalspline
 
 
 
@@ -33,6 +34,9 @@ class numeric_methods:
 		newton = NewtonNonLinearSystems()
 
 		return newton.get_root(funcoes, x0, tolerancia)
+
+	def splinesCubico(x, y):
+		return naturalspline(x,y)
 
 
 	#Aux functions

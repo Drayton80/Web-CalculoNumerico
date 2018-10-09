@@ -53,18 +53,34 @@
         </div>
       </form>
 
-      {%if tamanho == True%}
+      {%if tamanhoSplines == True%}
       <form method="POST" > {% csrf_token %} 
-        {{matrizTotal|safe}}
+        {{matrizSplines|safe}}
 
         <div class="d-flex align-items-center mt-3 mb-4">
-          <button class="btn btn-block btn-primary" type="submit" name="valoresNewton" value = "True">
+          <button class="btn btn-block btn-primary" type="submit" name="valoresSplines" value = "True">
             Calcular a Função
           </button>
         </div>
 
       </form>
       {%endif%}
+
+      <div class="d-flex flex-column align-items-center">
+
+          <label class="text-primary h5">Vetor Aproximado x*:</label>
+
+          <div class="d-flex align-items-center">
+
+              <!-- Gera os inputs aqui -->
+            <div class="d-flex flex-column align-items-center">
+
+              {{resultadoSplines|safe}}
+              
+            </div>
+
+          </div>
+        </div>
 
     </div>
   </div>
