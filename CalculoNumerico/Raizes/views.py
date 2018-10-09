@@ -221,7 +221,7 @@ def miniProjeto2(request):
 	elif request.method == "POST" and request.POST.get('valoresSplines') == "True":
 		x, y = backTagGeradas(contexto['ordemSplines'], "splinesCubico", request)
 		print("Valores em x-----", x, "Valores em y------", y, sep = '\n')
-		funcoes = numeric_methods.splinesCubico(x,y)
+		funcoes, contexto['graphSplines'] = numeric_methods.splinesCubico(x,y)
 		contexto['resultadoSplines'] = tagVetorResposta(funcoes)
 
 	#elif request.method == "POST" and 'gaussJordanTamanhoInput' in request.POST
