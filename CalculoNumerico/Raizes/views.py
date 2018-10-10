@@ -149,12 +149,12 @@ def backTagGeradas(tamanho, metodo, request):
 	if metodo == "gaussJordan":		
 		matriz = []
 		resultado = []
-		for i in range(1, tamanho + 2):
-			print("oooooooooooooooooooiiiiiiiiiiiiiiiI", i)
-			linha = []
-			resultado.append(int(request.POST.get(metodo + 'b'  + str(i))))
-			for j in range(1, tamanho + 2):
-				linha.append(int(request.POST.get(metodo + 'a'  + str(i) + str(j))))
+		for i in range(1, tamanho + 1):
+			print("oooooooooooooooooooiiiiiiiiiiiiiii", i)
+			linha = []	
+			resultado.append(float(request.POST.get(metodo + 'b'  + str(i))))
+			for j in range(1, tamanho + 1):
+				linha.append(float(request.POST.get(metodo + 'a'  + str(i) + str(j))))
 			matriz.append(linha)
 
 		return matriz, resultado
@@ -162,7 +162,7 @@ def backTagGeradas(tamanho, metodo, request):
 	elif metodo == "NewtonNaoLinear":
 		funcoes = []
 		x0 = []
-		for i in range(1, tamanho + 2):
+		for i in range(1, tamanho + 1):
 			funcoes.append(str(request.POST.get(metodo + 'fx'  + str(i))))
 			x0.append(int(request.POST.get(metodo + 'x'  + str(i))))
 		return funcoes, x0
@@ -212,7 +212,7 @@ def miniProjeto2(request):
 
 	#Processamento dos valores de Newton
 	elif request.method == "POST" and request.POST.get('valoresNewton') == "True":
-		fx, x0 = backTagGeradas(contexto['ordemSplines'], "NewtonNaoLinear", request)
+		fx, x0 = backTagGeradas(contexto['ordemNewton'], "NewtonNaoLinear", request)
 		tolerancia = numeric_methods.replace_Exponentiation(request.POST.get('newtonToleranciaInput'))
 		x = numeric_methods.NewtonNonLinear(fx, x0, tolerancia)
 		print("Lista-----", fx, "VETOR chutes-------", x0, "VALORES DE X*:", x, sep = '\n')
