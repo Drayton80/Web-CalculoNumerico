@@ -3,6 +3,7 @@
 #Retorna uma lista com as expressoes formadas
 
 from scipy.interpolate import CubicSpline
+from scipy import interpolate
 import matplotlib.pyplot as plt
 import numpy as np
 import mpld3
@@ -16,13 +17,19 @@ def naturalspline(x,y):
   d=list()
   s = [ ]
    
-  cs = CubicSpline(x,y,bc_type='natural')
+  cs = CubicSpline(x,y)
+  qs = interpolate.interp1d(x,y, kind='quadratic')
+  ls = interpolate.interp1d(x,y, kind='linear')
+
+  elements = np.arange(np.amin(x), np.amax(x), 0.001)
 
   fig = plt.figure()
-  plt.plot(x, cs(y), 'o', label='data')
-  plt.plot(x, cs(y), 'k', label="Spline")
+  plt.plot(x, y, 'o', label='Pontos Fornecidos')
+  plt.plot(elements, ls(elements), 'k', label="Spline Linear", color='orange')
+  plt.plot(elements, qs(elements), 'k', label="Spline Quadrática", color='blue')
+  plt.plot(elements, cs(elements), 'k', label="Spline Cúbica", color='green')
+  plt.legend(loc='lower left')
   html_graph = mpld3.fig_to_html(fig)
-  plt.show()
   #Vamos iterar pelos pontos e retornar uma lista p/ cada coeficiente
   
   for i in range(0,(size-1)):
